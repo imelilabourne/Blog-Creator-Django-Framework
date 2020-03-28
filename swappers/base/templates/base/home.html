@@ -1,0 +1,190 @@
+{% extends 'base/base.html' %} {% load static %} {% load crispy_forms_tags %} {% block content %}
+
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card card-body bg-white" id="profile-wrapper">
+                <img class="img-fluid" id="profile-pic" src="{{ user.profile.image.url }}" />
+                <hr>
+                <!-- {% for post in posts %} -->
+                <h4 class="text-center" id="fname">{{ user.first_name }} </h4>
+                <h4 class="text-center" id="lname">{{ user.last_name }} </h4>
+                <!-- {% endfor %} -->
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card card-body bg-white">
+                <h5>Welcome to my Journey!</h5>
+                <hr>
+                <p>{{ user.profile.bio }}</p>
+
+                <p class="d-inline-flex font-italic">Email: {{user.email}}</p>
+                <button id="editbutton" class="btn btn-success button5" data-toggle="modal" data-target="#exampleModalLong1">Edit Profile</button>
+            </div>
+
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-body p-4 bg-white">
+                <h5><i class="fas fa-map-marker-alt"></i>Best Products I've Tried</h5>
+                <hr>
+                <!-- <hr> {% for post in productpics %} -->
+                <!-- {% if user.is_authenticated %}
+                <p>{{ post.title }}</p>
+                {% endif %} -->
+                <!-- {% endfor %} -->
+                <img class="img-fluid" src="{{ user.profile.PFeaturedimage.url }}" />
+                <img class="img-fluid" src="{{ user.profile.PFeaturedimage2.url }}" />
+                <hr>
+                <button class="btn"><a href="{% url 'base:base-gallery' %}">See More</a></button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card card-body bg-white">
+                <h5>My Travel Experience</h5>
+                <hr>
+                <img class="img-fluid" src="{{ user.profile.TFeaturedimage.url }}" />
+                <img class="img-fluid" src="{{ user.profile.TFeaturedimage2.url }}" />
+                <hr>
+                <button class="btn "><a href="{% url 'base:base-travel' %}">See More</a></button>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-body bg-white">
+                <h5>Food I Love</h5>
+                <hr>
+                <div class="container" id="myproducts">
+                    <div class="row ">
+                        <div class="col-md-12 ">
+
+                            <div id="mdb-lightbox-ui "></div>
+
+                            <div class="mdb-lightbox no-margin">
+                                <div class="row">
+
+                                    <figure class="col-md-4 ">
+                                        <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(145).jpg " data-size="1600x1067 ">
+                                            <img alt="picture " src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(145).jpg " class="img-fluid ">
+                                        </a>
+                                    </figure>
+
+                                    <figure class="col-md-4 ">
+                                        <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(150).jpg " data-size="1600x1067 ">
+                                            <img alt="picture " src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(150).jpg " class="img-fluid " />
+                                        </a>
+                                    </figure>
+
+                                    <figure class="col-md-4 ">
+                                        <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(152).jpg " data-size="1600x1067 ">
+                                            <img alt="picture " src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(152).jpg " class="img-fluid " />
+                                        </a>
+                                    </figure>
+                                </div>
+                                <div class="row">
+                                    <figure class="col-md-4 ">
+                                        <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(42).jpg " data-size="1600x1067 ">
+                                            <img alt="picture " src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(42).jpg " class="img-fluid " />
+                                        </a>
+                                    </figure>
+
+                                    <figure class="col-md-4 ">
+                                        <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(151).jpg " data-size="1600x1067 ">
+                                            <img alt="picture " src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(151).jpg " class="img-fluid " />
+                                        </a>
+                                    </figure>
+
+                                    <figure class="col-md-4 ">
+                                        <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(40).jpg " data-size="1600x1067 ">
+                                            <img alt="picture " src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(40).jpg " class="img-fluid " />
+                                        </a>
+                                    </figure>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Button trigger modal -->
+
+    <!-- Modal for add photos
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Favorites</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Title</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter title">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Place</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Place">
+                        </div>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Details</label>
+                            <input type="text" class="form-control" id="details" aria-describedby="emailHelp" placeholder="Enter your memories">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+    <!-- Modal for edit profile-->
+    <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-white">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <div class="modal-body">
+                    <!-- <form> -->
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            <!-- <legend class="border-bottom mb-4">Join Today</legend> -->
+                            {{ u_form|crispy }} {{ p_form|crispy }}
+                        </fieldset>
+                        <div class="modal-footer">
+                            <button class="btn btn-outline-info">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

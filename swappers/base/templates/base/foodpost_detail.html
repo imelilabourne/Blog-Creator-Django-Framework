@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %} {% load static %} {% block content %}
+
+<a href="{% url 'base:base-food' %}" class="btn btn-info d-block m-4">Go back to Food Gallery</a>
+<hr>
+<div class="container p-3 card card-body bg-dark">
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="card card-body bg-white" id="profile-wrapper">
+                <img class="img-fluid" src="{{ object.image.url }}" />
+            </div>
+        </div>
+        <div class="col-md-8">
+
+            <div class="card card-body bg-white">
+                <div class="row">
+                    <h5 class="col-sm-10"> {{ object.title }}</h5>
+                    <!-- <button class="col-sm-2 btn btn-danger float-right"><a href="base:post-delete">Delete</a></button> -->
+
+                </div>
+                <hr>
+                <p>Location: {{ object.location }}</p>
+                <p class="d-inline-flex font-italic">Price: {{ object.price }}</p>
+                <!-- <button id="editbutton" class="btn btn-secondary button5" data-toggle="modal" data-target="#exampleModalLong1">Edit Profile</button> -->
+                <p>{{ object.story }}</p>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<hr> {% endblock %}

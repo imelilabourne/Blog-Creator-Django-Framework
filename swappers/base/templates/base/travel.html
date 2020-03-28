@@ -1,0 +1,56 @@
+{% extends 'base/base.html' %} {% load static %} {% block content %}
+
+<a href="{% url 'base:travel-create' %}" class="btn btn-primary d-block m-4">Share a Post</a><br> {% for post in travelpics %}
+<hr>
+<div class="container p-3 card card-body bg-dark">
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="card card-body bg-white" id="profile-wrapper">
+                <img class="img-fluid" id="" src="{{ post.image.url }}" />
+                <!-- <hr> -->
+                <!-- {% for post in posts %} -->
+                <!-- {% endfor %} -->
+            </div>
+        </div>
+        <div class="col-md-8">
+
+            <div class="card card-body bg-white">
+                <div class="row">
+                    <h5 class="col-sm-8"> <a href="{% url 'base:travel-detail' pk=post.pk %}">{{ post.title }}</a></h5>
+                    <!-- <button class="col-sm-2 btn btn-danger float-right" data-toggle="modal" data-target="#delModal">Delete</button> -->
+                    <button class="col-sm-2 btn btn-outline-danger float-right"><a href="{% url 'base:travel-delete' pk=post.pk %}">Delete</a></button>
+                    <button class="col-sm-2 btn btn-outline-primary "><a href="{% url 'base:travel-update' pk=post.pk %}">Edit</a></button>
+
+                </div>
+                <hr>
+                <p>Location: {{ post.location }}</p>
+                <p class="d-inline-flex font-italic">Travel Expenses: {{ post.TravelExpenses }}</p>
+                <!-- <button id="editbutton" class="btn btn-secondary button5" data-toggle="modal" data-target="#exampleModalLong1">Edit Profile</button> -->
+                <p>{{ post.story }}</p>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<hr> {% endfor %}
+<div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Are you Sure?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+            </div>
+            <div class="modal-body text-center">
+                <button type="button" class="btn btn-danger">Delete Post</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

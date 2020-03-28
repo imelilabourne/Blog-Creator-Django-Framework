@@ -1,0 +1,25 @@
+body {
+    background-color: light-gray;
+}
+
+.img {
+    background-image: url(images/product1.jpg);
+    background-image: -webkit-image-set( url(images/product1.jpg) 1x, url(images/product1.jpg) 2x, );
+    background-image: image-set( url(images/product1.jpg) 1x, url(images/product1.jpg) 2x, );
+}
+
+#profile-wrapper {
+    text-align: center;
+}
+
+.productpic {
+    max-width: 250px;
+}
+
+#profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
